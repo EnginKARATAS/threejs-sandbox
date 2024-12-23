@@ -19,9 +19,25 @@ scene.add(cube);
 
 camera.position.z = 3;
 
+
+
+import WebGL from 'three/addons/capabilities/WebGL.js';
+
+if ( WebGL.isWebGL2Available() ) {
+
+	// Initiate function or other initializations here
+    renderer.setAnimationLoop(animate);
+
+} else {
+
+	const warning = WebGL.getWebGL2ErrorMessage();
+	document.getElementById( 'container' ).appendChild( warning );
+
+}
+
+
 function animate() {
   cube.rotation.y += 0.01;
   renderer.render(scene, camera);
 }
 
-renderer.setAnimationLoop(animate);
